@@ -26,7 +26,35 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
         telegramBot.setUpdatesListener(this);
     }
 
+    @Override
+    public int process(List<Update> updates) {
 
+        for (Update update : updates) {
+
+            logger.info("Processing update: {}", update);
+
+            // Проверяем, что сообщение существует
+            if (update.message() != null && update.message().text() != null) {
+
+                String text = update.message().text();
+
+                // Проверяем команду /start
+                if (text.equals("/start")) {
+
+                    Long chatId = update.message().chat().id();
+
+                    SendMessage message = new SendMessage(
+                            chatId,
+                            "Привет! 👋 Я твой Telegram-бот.\nРад тебя видеть!"
+                    );
+
+                    telegramBot.execute(message);
+                }
+            }
+        }
+
+        return UpdatesListener.CONFIRMED_UPDATES_ALL;
+    }
 
 }
 
