@@ -1,8 +1,7 @@
 package com.example.sky_telegram2.configuration;
 
 
-import com.pengrad.telegrambot.TelegramBot;
-import com.pengrad.telegrambot.model.DeleteMyCommands;
+import com.example.sky_telegram2.bot.TelegramBot;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,12 +14,9 @@ public class TelegramBotConfiguration {
     @Value("${telegram.bot.token}")
     private String token;
 
-    @Bean
-    public TelegramBot telegramBot() {
-        TelegramBot bot = new TelegramBot(token);
-        bot.execute(new DeleteMyCommands());
-        return bot;
-    }
+//    @Bean
+//    public TelegramBot telegramBot() {
+//        return new TelegramBot("6915026805:AAGSyEmbkz-kGduQVDcz2lgmXDF-yK3SvPY");
+//    }
 
 }
-
