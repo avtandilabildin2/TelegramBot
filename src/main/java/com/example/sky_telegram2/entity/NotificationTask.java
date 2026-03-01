@@ -11,7 +11,8 @@ public class NotificationTask {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
+    @Column(name = "chat_id", nullable = false)
+    private Long chatId;
 
     @Column(name = "text", nullable = false)
     private String text;
@@ -22,48 +23,27 @@ public class NotificationTask {
     @Column(name = "sent", nullable = false)
     private boolean sent = false;
 
-    // Конструктор без аргументов (обязателен для JPA)
-    public NotificationTask() {
-    }
+    public NotificationTask() {}
 
-    public NotificationTask( String text, LocalDateTime notificationTime) {
-
+    public NotificationTask(Long chatId, String text, LocalDateTime notificationTime) {
+        this.chatId = chatId;
         this.text = text;
         this.notificationTime = notificationTime;
     }
 
     // Геттеры и сеттеры
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public Long getId() {
-        return id;
-    }
+    public Long getChatId() { return chatId; }
+    public void setChatId(Long chatId) { this.chatId = chatId; }
 
+    public String getText() { return text; }
+    public void setText(String text) { this.text = text; }
 
-    public String getText() {
-        return text;
-    }
+    public LocalDateTime getNotificationTime() { return notificationTime; }
+    public void setNotificationTime(LocalDateTime notificationTime) { this.notificationTime = notificationTime; }
 
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public LocalDateTime getNotificationTime() {
-        return notificationTime;
-    }
-
-    public void setNotificationTime(LocalDateTime notificationTime) {
-        this.notificationTime = notificationTime;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public boolean isSent() {
-        return sent;
-    }
-
-    public void setSent(boolean sent) {
-        this.sent = sent;
-    }
+    public boolean isSent() { return sent; }
+    public void setSent(boolean sent) { this.sent = sent; }
 }
